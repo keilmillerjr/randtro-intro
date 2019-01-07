@@ -9,12 +9,6 @@ fe.load_module("file");
 fe.load_module("shader");
 
 // --------------------
-// Config
-// --------------------
-
-fe.do_nut("config.nut");
-
-// --------------------
 // Layout User Options
 // --------------------
 
@@ -41,6 +35,12 @@ class UserConfig {
       order=userConfig.order++ />
     video="4x3/";
 
+		</ label="Force 4:3 aspect",
+      help="Force video to play in 4:3 aspect ratio.",
+			options="Yes, No",
+      order=userConfig.order++ />
+    force="No";
+
   </ label=userConfig.prefix + "SHADERS" + userConfig.postfix,
 		order=userConfig.order++ />
 	shaders="";
@@ -60,6 +60,42 @@ class UserConfig {
 local userConfig = fe.get_config();
 
 // --------------------
+// Config
+// --------------------
+
+local flw = fe.layout.width;
+local flh = fe.layout.height;
+
+local config = {
+  containerParent = {
+		x = 0,
+		y = 0,
+		width = flw,
+		height = flh,
+	},
+	container = {
+		x = 0,
+		y = 0,
+		width = flw,
+		height = flh,
+	},
+};
+
+if (toBool(userConfig["force"])) {
+	config.containerParent.x = (flw - matchAspect(4, 3, "height", flh)) / 2;
+	config.containerParent.width = matchAspect(4, 3, "height", flh);
+	config.container.width = matchAspect(4, 3, "height", flh);
+}
+
+config.video <- {
+	x = 0,
+	y = 0,
+	width = config.container.width,
+	height = config.container.height,
+  video_flags = Vid.NoLoop,
+};
+
+// --------------------
 // Layout
 // --------------------
 
@@ -69,6 +105,7 @@ function end_mode() {
   fe.signal("select");
 }
 
+// End mode if intro is off
 if (toBool(userConfig["intro"]) != true) end_mode();
 
 // ---------- Container
