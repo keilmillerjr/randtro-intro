@@ -30,7 +30,7 @@ You may need to change file paths as necessary if your differs.
 ## Credit
 
 Videos for this layout were obtained from the following locations:
-
+* [Attract-Mode.mp4](http://www.clanlogodesign.com) by verion
 * [Bombs Away - Drunkk Arcade.mp4](https://www.youtube.com/watch?v=V2NgAWLe7x8) by Bombs Away, produced by Central Station Records.
 * [Keith Apicary - Koopa Bounce.mp4](https://www.youtube.com/watch?v=KJ60saIKk74) by Keith Apicary, music & ft vocals by Levar Allen, produced by Nathan Barnatt.
 * [Keith Apicary - Neo Geo Song.mp4](https://www.youtube.com/watch?v=Q_kGJBv6Wr4) by Keith Apicary, music by FantomenK, produced by Nathan Barnatt.
