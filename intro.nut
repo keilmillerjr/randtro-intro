@@ -66,26 +66,21 @@ local userConfig = fe.get_config();
 local flw = fe.layout.width;
 local flh = fe.layout.height;
 
-local config = {
-  containerParent = {
-		x = 0,
-		y = 0,
-		width = flw,
-		height = flh,
-	},
-	container = {
-		x = 0,
-		y = 0,
-		width = flw,
-		height = flh,
-	},
+local config = {};
+
+config.containerParent <- {
+	x = toBool(userConfig["force"]) ? (flw - matchAspect(4, 3, "height", flh)) / 2 : 0,
+	y = 0,
+	width = toBool(userConfig["force"]) ? matchAspect(4, 3, "height", flh) : flw,
+	height = flh,
 };
 
-if (toBool(userConfig["force"])) {
-	config.containerParent.x = (flw - matchAspect(4, 3, "height", flh)) / 2;
-	config.containerParent.width = matchAspect(4, 3, "height", flh);
-	config.container.width = matchAspect(4, 3, "height", flh);
-}
+config.container <- {
+	x = 0,
+	y = 0,
+	width = toBool(userConfig["force"]) ? matchAspect(4, 3, "height", flh) : flw,
+	height = flh,
+};
 
 config.video <- {
 	x = 0,
